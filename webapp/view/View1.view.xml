@@ -1,0 +1,9 @@
+<mvc:View controllerName="sync.zdcppr4010.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page id="page" title="생산계획 조회·수정">
+        <l:VerticalLayout id="idHori">
+            <VBox width="100%">
+                <core:Fragment id="tableFrag" fragmentName="sync.zdcppr4010.view.tableFrag" type="XML" />
+            </VBox>
+        </l:VerticalLayout>
+    </Page>
+</mvc:View>
