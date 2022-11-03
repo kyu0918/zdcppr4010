@@ -22,16 +22,7 @@ sap.ui.define(
       },
 
       onRowPress: function (oEvent) {
-        // var sPath = oEvent.getParameter("Porderid").getPath();
-        // this._sPath = sPath;
-
-        // var oSelectedRow = otable
-        //   .getBinding("rows")
-        //   .getModel()
-        //   .getProperty(sPath);
-        // var sCreateKey = oModel.createKey("/planHSet", {
-        //   Porderid: oSelectedRow.Porderid,
-        // });
+        
         var oListItem = oEvent.getParameter('listItem');
         oListItem.getParent().setSelectedItem(oListItem, false);
       
@@ -43,11 +34,6 @@ sap.ui.define(
         oRouter.navTo("Detail", {
           Porderid: oRow.Porderid
         });
-
-        // var aFilter=[];
-        // aFilter.push(
-        //     new Filter('Porderid',"EQ", oSelectedRow.Porderid)
-        // )
 
       },
 
@@ -70,7 +56,6 @@ sap.ui.define(
       onBeforeExport: function (oEvt) {
         var mExcelSettings = oEvt.getParameter("exportSettings");
 
-        // Disable Worker as Mockserver is used in Demokit sample
         mExcelSettings.worker = false;
       },
 
