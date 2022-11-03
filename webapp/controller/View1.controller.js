@@ -51,6 +51,22 @@ sap.ui.define(
 
       },
 
+      onBeforeRebindTable: function(oEvent) {
+        var mBindingParams = oEvent.getParameter("bindingParams");
+
+        if( mBindingParams.parameters.custom["search"] ) {
+
+          mBindingParams.filters.push(
+            new sap.ui.model.Filter(
+              mBindingParams.parameters.custom["search-focus"],
+              "EQ",
+              mBindingParams.parameters.custom["search"]
+            )
+          );
+        }
+
+      },
+
       onBeforeExport: function (oEvt) {
         var mExcelSettings = oEvt.getParameter("exportSettings");
 

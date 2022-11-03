@@ -21,6 +21,7 @@
         <l:HorizontalLayout>
             <VBox width="100%">
                 <smartTable:SmartTable
+                    id="detailSmartTable"
                     entitySet="planISet"
                     smartFilterId="smartFilterBar1"
                     useExportToExcel="true"
@@ -43,7 +44,7 @@
                     app:useSmartToggle="true"
                     showFullScreenButton="true"
                 >
-                    <Table id="detailTable" selectionChange="onRowPress" mode="SingleSelectMaster" />
+                    <Table selectionChange="onRowPress" mode="SingleSelectMaster" />
                     <smartTable:layoutData>
                         <FlexItemData growFactor="0" baseSize="0%" />
                     </smartTable:layoutData>

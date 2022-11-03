@@ -12,43 +12,38 @@ sap.ui.define([
 			oRouter.getRoute("Detail").attachPatternMatched(this._onObjectMatched, this);
 		},
 
-		onAfterRendering: function() {
-			// var oTable = this.byId('detailSmartTable');
-
-			// var aFilter = [];
-			// debugger;
-			// if(this._porderid) {
-			// 	aFilter.push(
-			// 		new Filter("Porderid", "EQ", this._porderid)
-			// 	)
-			// }
-
-			// oTable.getBinding('items')
-			// 	  .filter( aFilter );
-		},
-
 		_onObjectMatched: function (oEvent) {
 			var oArguments = oEvent.getParameter("arguments"),
 				sPorderid = oArguments.Porderid;
+			
+			var oComponent = this.getOwnerComponent(),
+				oModel = oComponent.getModel();
 
-			this._porderid = sPorderid;
+			var oTable = this.byId('detailSmartTable').getTable();
 
 			var aFilter = [];
+	
+			if(sPorderid) {
+				aFilter.push(
+					new Filter("Porderid", "EQ", sPorderid)
+				)
+			}
 
-			// if(sPorderid) {
-			// 	aFilter.push(
-			// 		new Filter("Porderid", "EQ", sPorderid)
-			// 	)
-			// }
-			// var oTable = this.byId('detailSmartTable');
+			if(!oTable.getBinding('items')){
+				oModel.attachEventOnce().attachEventOnce('requestCompleted', function() {
+					oTable.getBinding('items').filter( aFilter );
+				}.bind(this));
+			}else{
+				oTable.getBinding('items').filter( aFilter );
+			}
 
-			// debugger;
-			// if(oTable.getBinding('items')) {
-			// 	this.byId('detailTable')
-			// 		.getBinding('items')
-			// 		.filter( aFilter );
-			// }
-			
+
+
+						
+		},
+
+		onNavBack: function () {
+            this.getOwnerComponent().getRouter().navTo("RouteView1");
 		},
 
 		onNavBack: function () {

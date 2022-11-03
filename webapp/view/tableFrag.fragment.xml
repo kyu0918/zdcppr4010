@@ -9,51 +9,134 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:smartMicroChart="sap.ui.comp.smartmicrochart"
     xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     controllerName="sync.zdcppr4010.controller.View1"
     height="100%"
 >
-    <!-- <smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="SmartTableRefApp_Explored" considerSelectionVariants="true" entitySet="planHSet" >
-        <smartFilterBar:controlConfiguration>
-            <smartFilterBar:ControlConfiguration key="Porderid" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false" label="생산계획코드" />
-        </smartFilterBar:controlConfiguration>
-        <smartFilterBar:layoutData>
-            <FlexItemData shrinkFactor="0" />
-        </smartFilterBar:layoutData>
-    </smartFilterBar:SmartFilterBar> -->
-    <l:Grid defaultSpan="XL12 L12 M12 S12">
-        <l:HorizontalLayout>
-            <VBox width="100%">
-                <smartTable:SmartTable
-                    id="detailSmartTable"
-                    entitySet="planHSet"
-                    smartFilterId="smartFilterBar"
-                    useExportToExcel="true"
-                    beforeExport="onBeforeExport"
-                    useVariantManagement="true"
-                    useTablePersonalisation="true"
-                    header="생산계획정보"
-                    showRowCount="true"
-                    persistencyKey="SmartTableRefApp_Explored"
-                    initiallyVisibleFields="Porderid,Pverid,Fertid,Wgoalstd,Wcenid,Posdate,Poedate"
-                    enableAutoBinding="true"
-                    class="sapUiResponsiveContentPadding"
-                    tableType="ResponsiveTable"
-                    demandPopin="true"
-                    paste="onPaste"
-                    enableCustomFilter="true"
-                    placeToolbarInTable="true"
-                    width="auto"
-                    showDetailsButton="true"
-                    app:useSmartToggle="true"
-                    showFullScreenButton="true"
-                >
-                    <Table select="onRowPress" mode="SingleSelectMaster" id="oTable" />
-                    <smartTable:layoutData>
-                        <FlexItemData growFactor="0" baseSize="0%" />
-                    </smartTable:layoutData>
-                </smartTable:SmartTable>
-            </VBox>
-        </l:HorizontalLayout>
-    </l:Grid>
+<smartFilterBar:SmartFilterBar 
+            id="smartFilterBar" 
+            entitySet="planHSet" 
+            persistencyKey="SmartFilter_Explored" 
+            basicSearchFieldName="Porderid" 
+            enableBasicSearch="true" >
+            <smartFilterBar:controlConfiguration>
+
+                <smartFilterBar:ControlConfiguration key="Porderid" visibleInAdvancedArea="true">
+                <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption low="PO-0006">
+                        </smartFilterBar:SelectOption>
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+
+                <smartFilterBar:ControlConfiguration 
+                    key="Pverid" 
+                    index="1" 
+                    label="Custom Filterfield"
+					groupId="_BASIC" 
+                    width="300px" 
+                    visibleInAdvancedArea="false">
+					<smartFilterBar:customControl>
+						<MultiComboBox id="multiComboBox" customData:hasValue="false" selectionChange="customFieldChange">
+							<core:Item key="PV-0006" text="PV-0006"/>
+							<core:Item key="PV-0007" text="PV-0007"/>
+							<core:Item key="PV-0008" text="PV-0008"/>
+						</MultiComboBox>
+					</smartFilterBar:customControl>
+				</smartFilterBar:ControlConfiguration>
+
+            </smartFilterBar:controlConfiguration>
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartFilterBar:layoutData>
+                <FlexItemData shrinkFactor="0"/>
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <smartTable:SmartTable 
+            id="LineItemsSmartTable"
+            entitySet="planHSet" 
+            smartFilterId="smartFilterBar" 
+            tableType="Table" 
+            useExportToExcel="true" 
+            beforeExport="onBeforeExport" 
+            useVariantManagement="true" 
+            useTablePersonalisation="true" 
+            header="Line Items" 
+            showRowCount="true" 
+            persistencyKey="SmartTableAnalytical_Explored" 
+            enableAutoBinding="true" 
+            class="sapUiResponsiveContentPadding" 
+            enableAutoColumnWidth="true" 
+            editTogglable="true" 
+            app:useSmartToggle="true"
+            initiallyVisibleFields="Porderid,Pverid,Fertid,Wgoalstd,Wcenid,Posdate,Poedate"
+            beforeRebindTable="onBeforeRebindTable">
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartTable:layoutData>
+                <FlexItemData growFactor="1" baseSize="0%"/>
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+
+        <!-- <smartFilterBar:SmartFilterBar 
+            id="smartFilterBar" 
+            entitySet="planHSet" 
+            persistencyKey="SmartFilter_Explored" 
+            basicSearchFieldName="Porderid" 
+            enableBasicSearch="true" >
+            <smartFilterBar:controlConfiguration>
+
+                <smartFilterBar:ControlConfiguration key="Porderid" visibleInAdvancedArea="true">
+                <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption low="PO-0006">
+                        </smartFilterBar:SelectOption>
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+
+                <smartFilterBar:ControlConfiguration 
+                    key="Pverid" 
+                    index="1" 
+                    label="Custom Filterfield"
+					groupId="_BASIC" 
+                    width="300px" 
+                    visibleInAdvancedArea="false">
+					<smartFilterBar:customControl>
+						<MultiComboBox id="multiComboBox" customData:hasValue="false" selectionChange="customFieldChange">
+							<core:Item key="PV-0006" text="PV-0006"/>
+							<core:Item key="PV-0007" text="PV-0007"/>
+							<core:Item key="PV-0008" text="PV-0008"/>
+						</MultiComboBox>
+					</smartFilterBar:customControl>
+				</smartFilterBar:ControlConfiguration>
+
+            </smartFilterBar:controlConfiguration>
+            <smartFilterBar:layoutData>
+                <FlexItemData shrinkFactor="0"/>
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+
+        <smartTable:SmartTable 
+            id="LineItemsSmartTable"
+            entitySet="planHSet" 
+            smartFilterId="smartFilterBar" 
+            tableType="Table" 
+            useExportToExcel="true" 
+            beforeExport="onBeforeExport" 
+            useVariantManagement="true" 
+            useTablePersonalisation="true" 
+            header="Line Items" 
+            showRowCount="true" 
+            persistencyKey="SmartTableAnalytical_Explored" 
+            enableAutoBinding="true" 
+            class="sapUiResponsiveContentPadding" 
+            enableAutoColumnWidth="true" 
+            editTogglable="true" 
+            app:useSmartToggle="true"
+            initiallyVisibleFields="Porderid,Pverid,Fertid,Wgoalstd,Wcenid,Posdate,Poedate"
+            beforeRebindTable="onBeforeRebindTable">
+            <Table select="onRowPress" mode="SingleSelectMaster" id="oTable" />
+            <smartTable:layoutData>
+                <FlexItemData growFactor="0" baseSize="0%" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable> -->
+
 </core:FragmentDefinition>
