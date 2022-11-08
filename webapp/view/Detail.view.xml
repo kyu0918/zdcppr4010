@@ -1,56 +1,44 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:smartTable="sap.ui.comp.smarttable"
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:smartMicroChart="sap.ui.comp.smartmicrochart"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    controllerName="sync.zdcppr4010.controller.Detail">
+    controllerName="sync.zdcppr4010.controller.Detail"
+>
     <Page title="{i18n>주간생산계획}" showNavButton="true" navButtonPress=".onNavBack">
-
-        <!-- <smartFilterBar:SmartFilterBar id="smartFilterBar1" persistencyKey="SmartTableRefApp_Explored1" considerSelectionVariants="true" entitySet="planISet" enableBasicSearch="true" basicSearchFieldName="PORDERID" showClearButton="true">
-        <smartFilterBar:controlConfiguration>
-            <smartFilterBar:ControlConfiguration key="Porderid" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false" label="생산계획코드" />
-        </smartFilterBar:controlConfiguration>
-        <smartFilterBar:layoutData>
-            <FlexItemData shrinkFactor="0" />
-        </smartFilterBar:layoutData>
-    </smartFilterBar:SmartFilterBar> -->
-
-    <l:Grid defaultSpan="XL12 L12 M12 S12">
-        <l:HorizontalLayout>
-            <VBox width="100%">
-                <smartTable:SmartTable
-                    id="detailSmartTable"
-                    entitySet="planISet"
-                    smartFilterId="smartFilterBar1"
-                    useExportToExcel="true"
-                    beforeExport="onBeforeExport"
-                    useVariantManagement="true"
-                    useTablePersonalisation="true"
-                    header="일간생산계획"
-                    showRowCount="true"
-                    persistencyKey="SmartTableRefApp_Explored1"
-                    initiallyVisibleFields="Porderid,Pdate,Dgoalstd,Lgort,"
-                    enableAutoBinding="true"
-                    class="sapUiResponsiveContentPadding"
-                    tableType="ResponsiveTable"
-                    demandPopin="true"
-                    paste="onPaste"
-                    enableCustomFilter="true"
-                    placeToolbarInTable="true"
-                    width="auto"
-                    showDetailsButton="true"
-                    app:useSmartToggle="true"
-                    showFullScreenButton="true"
-                >
-                    <Table selectionChange="onRowPress" mode="SingleSelectMaster" />
-                    <smartTable:layoutData>
-                        <FlexItemData growFactor="0" baseSize="0%" />
-                    </smartTable:layoutData>
-                </smartTable:SmartTable>
-            </VBox>
-        </l:HorizontalLayout>
-    </l:Grid>
+        <smartTable:SmartTable
+            id="detailSmartTable"
+            entitySet="planISet"
+            smartFilterId="smartFilterBar1"
+            useExportToExcel="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="일간생산계획"
+            showRowCount="true"
+            persistencyKey="SmartTableRefApp_Explored1"
+            initiallyVisibleFields="Porderid,Pdate,Dgoalstd,Lgort,"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            tableType="ResponsiveTable"
+            demandPopin="true"
+            paste="onPaste"
+            enableCustomFilter="true"
+            placeToolbarInTable="true"
+            width="auto"
+            showDetailsButton="true"
+            app:useSmartToggle="true"
+            showFullScreenButton="true"
+        >
+            <Table selectionChange="onRowPress" mode="SingleSelectMaster" />
+            <smartTable:layoutData>
+                <FlexItemData growFactor="0" baseSize="0%" />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
     </Page>
 </mvc:View>
