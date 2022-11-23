@@ -10,7 +10,7 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     controllerName="sync.zdcppr4010.controller.Detail"
 >
-    <Page title="{i18n>주간생산계획}" showNavButton="true" navButtonPress=".onNavBack">
+    <Page title="{i18n>일간생산계획}" showNavButton="true" navButtonPress=".onNavBack">
         <smartTable:SmartTable
             id="detailSmartTable"
             entitySet="planISet"
